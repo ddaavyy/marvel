@@ -36,13 +36,17 @@ function App() {
 
 // -------------------------------------------------------
 
+const [inputValue, setInputValue] = useState("");
 const [searchQuery, setSearchQuery] = useState(""); 
 
-  // Função que será chamada quando a pesquisa mudar
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-  };
+const handleInputChange = (query) => {
+  setInputValue(query);
+};
 
+const handleSearchClick = () => {
+  setSearchQuery(inputValue);
+};
+// ---------------------------------------------------------
 
   return (
     // Pagina Inicial
@@ -53,8 +57,15 @@ const [searchQuery, setSearchQuery] = useState("");
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
         </header>
         <Logo logo={(paginaPrincipal === 2 ? "imgLogo-2" : "imgLogo-1")}/>
-      <BarraDePesquisa onSearch={handleSearch} handlePrincipal={updatePagina} pagina={(paginaPrincipal === 2 ? "barradepesquisa-2" : "barradepesquisa-1")} botao={(paginaPrincipal === 2 ? "botaolupaprocurar-2" : "botaolupaprocurar-1")}
-      lupa={(paginaPrincipal === 2 ? "lupa-2" : "lupa-1")}/>
+        <BarraDePesquisa 
+          inputValue={inputValue} 
+          onInputChange={handleInputChange} 
+          onSearchClick={handleSearchClick} 
+          handlePrincipal={updatePagina} 
+          pagina={(paginaPrincipal === 2 ? "barradepesquisa-2" : "barradepesquisa-1")} 
+          botao={(paginaPrincipal === 2 ? "botaolupaprocurar-2" : "botaolupaprocurar-1")}
+          lupa={(paginaPrincipal === 2 ? "lupa-2" : "lupa-1")}
+        />
       <EscolhaOPersonagem />
     </div></> : paginaPrincipal === 2 ?
     // Pagina quando for pesquisar
@@ -65,9 +76,15 @@ const [searchQuery, setSearchQuery] = useState("");
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
         </header>
       <Logo logo={(paginaPrincipal === 2 ? "imgLogo-2" : "imgLogo-1")}/>
-      <BarraDePesquisa onSearch={handleSearch} handlePrincipal={updatePagina} pagina={(paginaPrincipal === 2 ? "barradepesquisa-2" : "barradepesquisa-1")} botao={(paginaPrincipal === 2 ? "botaolupaprocurar-2" : "botaolupaprocurar-1")}
-      lupa={(paginaPrincipal === 2 ? "lupa-2" : "lupa-1")}/>
-
+      <BarraDePesquisa 
+        inputValue={inputValue} 
+        onInputChange={handleInputChange} 
+        onSearchClick={handleSearchClick} 
+        handlePrincipal={updatePagina} 
+        pagina={(paginaPrincipal === 2 ? "barradepesquisa-2" : "barradepesquisa-1")} 
+        botao={(paginaPrincipal === 2 ? "botaolupaprocurar-2" : "botaolupaprocurar-1")}
+        lupa={(paginaPrincipal === 2 ? "lupa-2" : "lupa-1")}
+      />
       <Resultados searchQuery={searchQuery}/>
     </div>
     </> : <>
