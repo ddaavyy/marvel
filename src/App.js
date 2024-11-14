@@ -1,5 +1,4 @@
 import './style.css'
-
 import Logo from "./components/Logo/Logo";
 import BarraDePesquisa from './components/BarraDePesquisa/BarraDePesquisa';
 import EscolhaOPersonagem from './components/EscolhaOPersonagem/EscolhaOPersonagem';
@@ -11,6 +10,7 @@ import imgLight from "./images/fundo-tema-light.jpeg";
 
 import { useState } from "react"
 import Resultados from './components/Resultados/Resultados.tsx';
+import DetalhesPersonagem from './components/DetalhesPersonagem/DetalhesPersonagem.tsx';
 
 function App() {
   // Tema Dark e Light
@@ -19,6 +19,7 @@ function App() {
   const [color, setColor] = useState('white')
   const [temaicon, setTemaIcon] = useState("invert(0%)")
   const [lado, setLado] = useState("direito")
+const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
   const mudarTema = () => {
       temaAtual === 'Dark' ? setTemaAtual("Light") : setTemaAtual("Dark")
       background === imgDark ? setBackground(imgLight) : setBackground(imgDark)
@@ -34,6 +35,11 @@ function App() {
     paginaPrincipal === 1 ? setPaginaPrincipal(2) : console.log()
   }
 
+  const irParaDetalhes = (personagem) => {
+    setPersonagemSelecionado(personagem); // Atualiza o estado com os dados do personagem
+    setPaginaPrincipal(3); // Vai para a página 3, mas mantém o estado da pesquisa
+  };
+
 // -------------------------------------------------------
 
 const [inputValue, setInputValue] = useState("");
@@ -45,7 +51,12 @@ const handleInputChange = (query) => {
 
 const handleSearchClick = () => {
   setSearchQuery(inputValue);
+  setPaginaPrincipal(2)
 };
+// ---------------------------------------------------------
+
+// Pagina de detalhe do card de escolhido
+
 // ---------------------------------------------------------
 
   return (
@@ -85,10 +96,33 @@ const handleSearchClick = () => {
         botao={(paginaPrincipal === 2 ? "botaolupaprocurar-2" : "botaolupaprocurar-1")}
         lupa={(paginaPrincipal === 2 ? "lupa-2" : "lupa-1")}
       />
-      <Resultados searchQuery={searchQuery}/>
+      <Resultados searchQuery={searchQuery} onPersonagemClick={irParaDetalhes} />
     </div>
-    </> : <>
-    </>
+    </> : 
+    // Pagina especifica
+    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className='pagina-principal'>
+        <header className={'header esquerdo'}>
+            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema"/>
+            <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
+        </header>
+      <Logo logo={(paginaPrincipal === 1 ? "imgLogo-1" : "imgLogo-2")}/>
+      <BarraDePesquisa 
+        inputValue={inputValue} 
+        onInputChange={handleInputChange} 
+        onSearchClick={handleSearchClick} 
+        handlePrincipal={updatePagina} 
+        pagina={(paginaPrincipal === 1 ? "barradepesquisa-1" : "barradepesquisa-2")} 
+        botao={(paginaPrincipal === 1 ? "botaolupaprocurar-1" : "botaolupaprocurar-2")}
+        lupa={(paginaPrincipal === 1 ? "lupa-1" : "lupa-2")}
+      />
+      <div className="container-personagem-detalhes">
+      {personagemSelecionado ? (
+         <DetalhesPersonagem personagem={personagemSelecionado} />
+      ) : (
+        <p>Carregando...</p>
+      )}
+    </div>
+      </div>
   );
 }
 
