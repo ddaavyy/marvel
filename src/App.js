@@ -42,6 +42,7 @@ const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
 
 // -------------------------------------------------------
 
+// Barra de pesquisa
 const [inputValue, setInputValue] = useState("");
 const [searchQuery, setSearchQuery] = useState(""); 
 
@@ -55,9 +56,6 @@ const handleSearchClick = () => {
 };
 // ---------------------------------------------------------
 
-// Pagina de detalhe do card de escolhido
-
-// ---------------------------------------------------------
 
   return (
     // Pagina Inicial
@@ -81,7 +79,8 @@ const handleSearchClick = () => {
     </div></> : paginaPrincipal === 2 ?
     // Pagina quando for pesquisar
     <>
-    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className='pagina-principal'>
+    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className={`pagina-principal ${paginaPrincipal === 2 || paginaPrincipal === 3 ? (temaAtual === "Dark" ? 'fundo-escuro' : 'fundo-claro') : ''}`}>
+      
         <header className={'header esquerdo'}>
             <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema"/>
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
@@ -96,11 +95,15 @@ const handleSearchClick = () => {
         botao={(paginaPrincipal === 2 ? "botaolupaprocurar-2" : "botaolupaprocurar-1")}
         lupa={(paginaPrincipal === 2 ? "lupa-2" : "lupa-1")}
       />
-      <Resultados searchQuery={searchQuery} onPersonagemClick={irParaDetalhes} />
+      <Resultados 
+        searchQuery={searchQuery} 
+        onPersonagemClick={irParaDetalhes} 
+        temaAtual={temaAtual}
+      />
     </div>
     </> : 
     // Pagina especifica
-    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className='pagina-principal'>
+    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className={`pagina-principal ${paginaPrincipal === 2 || paginaPrincipal === 3 ? (temaAtual === "Dark" ? 'fundo-escuro' : 'fundo-claro') : ''}`}>
         <header className={'header esquerdo'}>
             <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema"/>
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
@@ -117,7 +120,7 @@ const handleSearchClick = () => {
       />
       <div className="container-personagem-detalhes">
       {personagemSelecionado ? (
-         <DetalhesPersonagem personagem={personagemSelecionado} />
+         <DetalhesPersonagem personagem={personagemSelecionado} temaAtual={temaAtual} />
       ) : (
         <p>Carregando...</p>
       )}
