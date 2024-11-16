@@ -1,0 +1,37 @@
+@media (max-width: 899px){
+    .imgLogo-1 {
+        width: 250px;
+        height: 200px;
+        margin-left: 8vh;
+        display: none;
+    }
+
+    .imgLogo-2 {
+        width: 250px;
+        height: 200px;
+        position: relative;
+        margin-top: 4px;
+        margin-left: 12vw;
+        display: none;
+    }
+}
+
+@media (min-width: 900px) {
+    .imgLogo-1 {
+        width: 25.51vw;
+        height: 36.39vh;
+        position: relative;
+        margin-top: 50px;
+        left: 15%;
+        z-index: 1;
+    }
+
+    .imgLogo-2 {
+        width: 17.5vw;
+        height: 22.48vh;
+        position: relative;
+        margin-top: 4px;
+        left: 5%;
+        z-index: 1;
+    }
+}

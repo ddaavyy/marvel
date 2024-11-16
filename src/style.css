@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+}
+
+html, body {
+    height: 100%;  /* Garantir que a altura seja 100% */
+    width: 100%;   /* Garantir que a largura seja 100% */
+}
+
+.pagina-principal {
+    display: flex;
+    flex-direction: column;  /* Alinha os itens na vertical */
+    min-height: 100vh;  /* Garantir que a página tenha ao menos 100% da altura da tela */
+    background-repeat: no-repeat;
+    background-size: cover;  /* Faz o fundo cobrir toda a tela sem distorcer */
+    background-position: center center;  /* Centraliza a imagem do fundo */
+    transition: 0.3s;
+    background-attachment: fixed;
+    position: relative; /* Necessário para garantir que o ::before seja posicionado corretamente */
+}
+
+.pagina-principal.fundo-escuro {
+    position: relative;  /* Necessário para que o ::before funcione corretamente */
+}
+
+.pagina-principal.fundo-escuro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000080; /* Ajuste o nível de escurecimento */
+    z-index: 1; /* Garante que o fundo escuro fique atrás do conteúdo */
+    pointer-events: none; /* Impede que o fundo escuro interfira nas interações com os elementos da página */
+}
+
+.pagina-principal.fundo-claro {
+    position: relative;  /* Necessário para que o ::before funcione corretamente */
+}
+
+.pagina-principal.fundo-claro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #E6DCDBE5; /* Ajuste o nível de escurecimento */
+    z-index: 1; /* Garante que o fundo escuro fique atrás do conteúdo */
+    pointer-events: none; /* Impede que o fundo escuro interfira nas interações com os elementos da página */
+}
+
+
+@media (max-width: 899px){
+    .imgDark {
+        background-image: url("./images/marvel-dark.jpg");
+        min-height: 100vh;  /* Garantir que a página tenha ao menos 100% da altura da tela */
+        background-repeat: no-repeat;
+        background-position: center -25vh;
+        transition: 0.1s;
+        background-attachment: fixed;
+        position: relative; /* Necessário para garantir que o ::before seja posicionado corretamente */
+        background-size: contain;
+        background-color: black;
+    }
+
+    .pagina-principal.fundo-claro::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #5a150fb7; /* Ajuste o nível de escurecimento */
+        z-index: 1; /* Garante que o fundo escuro fique atrás do conteúdo */
+        pointer-events: none; /* Impede que o fundo escuro interfira nas interações com os elementos da página */
+    }
+
+    .imgLight {
+        background-image: url("./images/marvel-light.jpg");
+        min-height: 100vh;  /* Garantir que a página tenha ao menos 100% da altura da tela */
+        background-repeat: no-repeat;
+        background-position: center 4%;
+        transition: 0.1s;
+        background-attachment: fixed;
+        position: relative; /* Necessário para garantir que o ::before seja posicionado corretamente */
+        background-size: 75%;
+        background-color: #B51E25;
+    }
+}
+
+@media (min-width: 900px) {
+    .imgDark {
+        background-image: url("./images/fundo-tema-dark.jpeg");
+    }
+
+    .imgLight {
+        background-image: url("./images/fundo-tema-light.jpeg");
+    }
+}

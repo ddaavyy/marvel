@@ -1,0 +1,152 @@
+
+@media (max-width: 899px){
+    .barradepesquisa-1 {
+        position: fixed;
+        width: 65.08vw;
+        height: 5.8vh;
+        top: 38%;
+        left: 12%;
+        border-radius: 20px;
+        border: none;
+        background-color: #6666666e;
+        padding: 0px 0px 0px 20px;
+        color: white;
+        }
+    
+        .barradepesquisa-2 {
+            position: absolute;
+            width: 65%;
+            height: 5.8vh;
+            top: 30px;
+            border-radius: 20px;
+            margin-left: 20px;
+            border: none;
+            background-color: #6666666e;
+            padding: 0px 0px 0px 20px;
+            color: white;
+        }
+    
+        .botaolupaprocurar-1{
+            border: none;
+        }
+    
+        .botaolupaprocurar-1, .lupa-1{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background-color: transparent;
+            position: fixed;
+            top: 19.4vh;
+            left: 34vw;
+            filter: invert(50%);
+        }
+    
+        .botaolupaprocurar-2{
+            border: none;
+        }
+    
+        .botaolupaprocurar-2, .lupa-2{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background-color: transparent;
+            right: 16.5vw;
+            top: 2.75vh;
+            filter: invert(50%);
+        }
+    
+        .barradepesquisa-1, .barradepesquisa-2 {
+            z-index: 10; 
+        }
+    
+        .botaolupaprocurar-1, .botaolupaprocurar-2 {
+            z-index: 10;  
+        }
+    
+    
+    
+        .barradepesquisa-1::-webkit-search-cancel-button,
+        .barradepesquisa-1::-webkit-search-decoration,
+        .barradepesquisa-1::-webkit-search-results-button,
+        .barradepesquisa-1::-webkit-search-results-decoration,
+        .barradepesquisa-2::-webkit-search-cancel-button,
+        .barradepesquisa-2::-webkit-search-decoration,
+        .barradepesquisa-2::-webkit-search-results-button,
+        .barradepesquisa-2::-webkit-search-results-decoration {
+        display: none;
+        }
+    }
+
+@media (min-width: 900px) { 
+    .barradepesquisa-1 {
+    position: fixed;
+    width: 37.08vw;
+    height: 5.8vh;
+    top: 48%;
+    left: 12%;
+    border-radius: 5px;
+    border: 1px solid #34AC40;
+    padding: 0px 0px 0px 20px;
+    }
+
+    .barradepesquisa-2 {
+        position: absolute;
+        width: 27.08vw;
+        height: 5.8vh;
+        top: 30px;
+        right: 220px;
+        border-radius: 5px;
+        border: 1px solid #34AC40;
+        padding: 0px 0px 0px 20px;
+    }
+
+    .botaolupaprocurar-1{
+        border: none;
+    }
+
+    .botaolupaprocurar-1, .lupa-1{
+        width: 2.4vw;
+        height: 5.05vh;
+        cursor: pointer;
+        background-color: transparent;
+        position: fixed;
+        top: 48.4%;
+        left: 45.8%;
+    }
+
+    .botaolupaprocurar-2{
+        border: none;
+    }
+
+    .botaolupaprocurar-2, .lupa-2{
+        position: absolute;
+        width: 2.4vw;
+        height: 5.05vh;
+        cursor: pointer;
+        background-color: transparent;
+        right: 114px;
+        top: 16.5px;
+    }
+
+    .barradepesquisa-1, .barradepesquisa-2 {
+        z-index: 10; 
+    }
+
+    .botaolupaprocurar-1, .botaolupaprocurar-2 {
+        z-index: 10;  
+    }
+
+
+
+    .barradepesquisa-1::-webkit-search-cancel-button,
+    .barradepesquisa-1::-webkit-search-decoration,
+    .barradepesquisa-1::-webkit-search-results-button,
+    .barradepesquisa-1::-webkit-search-results-decoration,
+    .barradepesquisa-2::-webkit-search-cancel-button,
+    .barradepesquisa-2::-webkit-search-decoration,
+    .barradepesquisa-2::-webkit-search-results-button,
+    .barradepesquisa-2::-webkit-search-results-decoration {
+    display: none;
+    }
+}
