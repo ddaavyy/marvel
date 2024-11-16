@@ -5,8 +5,6 @@ import EscolhaOPersonagem from './components/EscolhaOPersonagem/EscolhaOPersonag
 
 import "./components/Header/Header.css"
 import tema from "./images/tema.png"
-import imgDark from "./images/fundo-tema-dark.jpeg";
-import imgLight from "./images/fundo-tema-light.jpeg";
 
 import { useState } from "react"
 import Resultados from './components/Resultados/Resultados.tsx';
@@ -15,14 +13,12 @@ import DetalhesPersonagem from './components/DetalhesPersonagem/DetalhesPersonag
 function App() {
   // Tema Dark e Light
   const [temaAtual, setTemaAtual] = useState('Dark')
-  const [background, setBackground] = useState(imgDark)
   const [color, setColor] = useState('white')
   const [temaicon, setTemaIcon] = useState("invert(0%)")
   const [lado, setLado] = useState("direito")
 const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
   const mudarTema = () => {
       temaAtual === 'Dark' ? setTemaAtual("Light") : setTemaAtual("Dark")
-      background === imgDark ? setBackground(imgLight) : setBackground(imgDark)
       color === 'white' ? setColor('black') : setColor('white')
       temaicon === "invert(0%)" ? setTemaIcon("invert(100%)") : setTemaIcon("invert(0%)")
       lado === "direito" ? setLado("esquerdo") : setLado("direito")
@@ -36,7 +32,7 @@ const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
   }
 
   const irParaDetalhes = (personagem) => {
-    setPersonagemSelecionado(personagem); // Atualiza o estado com os dados do personagem
+    setPersonagemSelecionado(personagem);
     setPaginaPrincipal(3); // Vai para a página 3, mas mantém o estado da pesquisa
   };
 
@@ -60,9 +56,9 @@ const handleSearchClick = () => {
   return (
     // Pagina Inicial
     paginaPrincipal === 1 ? <>
-    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className='pagina-principal'>
+    <div style={{color: `${color}`}} className={'pagina-principal' + (temaAtual === "Dark" ? " imgDark" : " imgLight")}>
         <header className={'header' + (lado === "esquerdo" ? " direito" : "")}>
-            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema"/>
+            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema" onClick={() => {mudarTema()}}/>
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
         </header>
         <Logo logo={(paginaPrincipal === 2 ? "imgLogo-2" : "imgLogo-1")}/>
@@ -79,10 +75,10 @@ const handleSearchClick = () => {
     </div></> : paginaPrincipal === 2 ?
     // Pagina quando for pesquisar
     <>
-    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className={`pagina-principal ${paginaPrincipal === 2 || paginaPrincipal === 3 ? (temaAtual === "Dark" ? 'fundo-escuro' : 'fundo-claro') : ''}`}>
+    <div style={{color: `${color}`}} className={`pagina-principal ${paginaPrincipal === 2 || paginaPrincipal === 3 ? (temaAtual === "Dark" ? 'fundo-escuro imgDark' : 'fundo-claro imgLight') : ''}`}>
       
         <header className={'header esquerdo'}>
-            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema"/>
+            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema" onClick={() => {mudarTema()}}/>
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
         </header>
       <Logo logo={(paginaPrincipal === 2 ? "imgLogo-2" : "imgLogo-1")}/>
@@ -102,10 +98,10 @@ const handleSearchClick = () => {
       />
     </div>
     </> : 
-    // Pagina especifica
-    <div style={{backgroundImage: `url(${background})`, color: `${color}`}} className={`pagina-principal ${paginaPrincipal === 2 || paginaPrincipal === 3 ? (temaAtual === "Dark" ? 'fundo-escuro' : 'fundo-claro') : ''}`}>
+    // Pagina do personagem escolhido para ver mais
+    <div style={{color: `${color}`}} className={`pagina-principal ${paginaPrincipal === 2 || paginaPrincipal === 3 ? (temaAtual === "Dark" ? 'fundo-escuro imgDark' : 'fundo-claro imgLight') : ''}`}>
         <header className={'header esquerdo'}>
-            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema"/>
+            <img style={{filter: `${temaicon}`}} src={tema} alt="Icone Tema" className="imgTema" onClick={() => {mudarTema()}}/>
             <button style={{color: `${color}`}} className="mudartema" onClick={() => {mudarTema()}}>Tema {temaAtual} <p>mudar tema</p></button>
         </header>
       <Logo logo={(paginaPrincipal === 1 ? "imgLogo-1" : "imgLogo-2")}/>
